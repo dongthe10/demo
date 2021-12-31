@@ -1,0 +1,11 @@
+GET http://{{environment}}/request/map2
+Content-Type: application/x-www-form-urlencoded
+
+date=1999-07-13
+
+###
+GET http://{{environment}}/request/map33
+Content-Type: multipart/form-data
+
+date=1999-07-13
+

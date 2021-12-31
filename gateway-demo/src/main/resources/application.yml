@@ -1,0 +1,34 @@
+#spring:
+#  cloud:
+#    gateway:
+#      discovery:
+#        locator:
+#          enabled: false
+#          #开启小写验证，默认feign根据服务名查找都是用的全大写
+#          lowerCaseServiceId: true
+#      default-filters:
+#        - AddResponseHeader=X-Response-Default-Foo, Default-Bar
+#      routes:
+#        - id: OLOAN-FINANCIAL-PRODUCT-SERVICE
+#          # lb代表从注册中心获取服务
+#          uri: lb://OLOAN-FINANCIAL-PRODUCT-SERVICE
+#          predicates:
+#            # 转发该路径
+#            - Path=/gateway/financialProduct/**
+#          # 带前缀
+#          filters:
+#            - StripPrefix=1
+#            - name: Hystrix
+#              args:
+#                name: fallbackcmd
+#                fallbackUri: forward:/defaultfallback
+#        - id: ADMIN-SERVICE
+#          uri: lb://ADMIN-SERVICE
+#          predicates:
+#            - Path=/gateway/auth/**
+#          filters:
+#            - StripPrefix=2
+#            - name: Hystrix
+#              args:
+#                name: fallbackcmd
+#                fallbackUri: forward:/defaultfallback

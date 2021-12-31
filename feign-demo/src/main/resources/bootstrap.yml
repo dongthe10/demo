@@ -1,0 +1,28 @@
+spring:
+  application:
+    name: feign-service
+  cloud:
+    nacos:
+      config:
+#        # 配置文件的环境
+#        group: ${spring.profiles.active}
+        # 配置文件的格式
+        file-extension: yaml
+        # 配置中心的地址
+        server-addr: 127.0.0.1:8848
+        shared-configs:
+          - data-id: common.yaml
+#        # 配置文件prefix
+#        prefix: ${spring.application.name}
+#        #命名空间
+#        namespace: mall
+      discovery:
+        server-addr:
+server:
+  port: 8089
+
+#
+#
+#feign:
+#  hystrix:
+#    enabled: true
