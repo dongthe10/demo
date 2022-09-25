@@ -7,6 +7,9 @@ import io.reactivex.ObservableOnSubscribe;
 import io.reactivex.Observer;
 import io.reactivex.disposables.Disposable;
 
+import java.util.ArrayList;
+import java.util.stream.Collectors;
+
 /**
  * @author hollly
  * @date 2021/10/2 17:29
@@ -49,5 +52,22 @@ public class JxTest {
 //        };
 //
 //        observable.subscribe(observer);
+
+//        new ArrayList<>().stream().filter(x -> true).collect(Collectors.toList());
+
+        String a = "ffff";
+        a.substring(0, 10);
+        a.length();
+        int[] ints = new int[]{1, 1, 11};
+        int length = ints.length;
+        char[] array = a.toCharArray();
+
+
+        ArrayList<Integer> objects = new ArrayList<>();
+        objects.stream().sorted((x1, x2) -> x2 - x1).collect(Collectors.toList());
+
+
+        char c1 = 2323;
+
     }
 }

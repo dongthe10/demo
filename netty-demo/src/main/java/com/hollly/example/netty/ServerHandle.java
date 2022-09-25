@@ -12,15 +12,12 @@ import java.util.UUID;
 public class ServerHandle extends SimpleChannelInboundHandler<String> {
     @Override
     protected void channelRead0(ChannelHandlerContext channelHandlerContext, String s) throws Exception {
-        System.out.println(channelHandlerContext.channel().remoteAddress()+","+s);
+        System.out.println("收到客户端消息: " + channelHandlerContext.channel().remoteAddress()+","+s);
         channelHandlerContext.channel().writeAndFlush("from service"+ UUID.randomUUID());
     }
     @Override
     public void channelActive(ChannelHandlerContext ctx) throws Exception {
-        System.out.println("来自服务端的问候");
-        System.out.println(this);
-        ctx.fireChannelRead("fff");
-        System.out.println(ctx.handler() == this);
+        System.out.println("channelActive success");
     }
     @Override
     public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) throws Exception {

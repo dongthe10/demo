@@ -1,0 +1,54 @@
+[
+  {
+    "children": [
+      {
+        "children": [
+          {
+            "children": [],
+            "code": "menuVO code 6",
+            "id": 7,
+            "name": "menuVO name 6",
+            "parentId": 4
+          }
+        ],
+        "code": "menuVO code 3",
+        "id": 4,
+        "name": "menuVO name 3",
+        "parentId": 1
+      },
+      {
+        "children": [],
+        "code": "menuVO code 4",
+        "id": 5,
+        "name": "menuVO name 4",
+        "parentId": 1
+      }
+    ],
+    "code": "menuVO code",
+    "id": 1,
+    "name": "menuVO name",
+    "parentId": 0
+  },
+  {
+    "children": [
+      {
+        "children": [],
+        "code": "menuVO code 5",
+        "id": 6,
+        "name": "menuVO name 5",
+        "parentId": 2
+      }
+    ],
+    "code": "menuVO code 1",
+    "id": 2,
+    "name": "menuVO name 1",
+    "parentId": 0
+  },
+  {
+    "children": [],
+    "code": "menuVO code 2",
+    "id": 3,
+    "name": "menuVO name 2",
+    "parentId": 0
+  }
+]

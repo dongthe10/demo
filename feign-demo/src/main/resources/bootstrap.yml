@@ -18,6 +18,8 @@ spring:
 #        namespace: mall
       discovery:
         server-addr:
+  jackson:
+    date-format: java.text.SimpleDateFormat
 server:
   port: 8089
 

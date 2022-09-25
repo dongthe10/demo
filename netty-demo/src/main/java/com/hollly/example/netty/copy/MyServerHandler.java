@@ -2,6 +2,7 @@ package com.hollly.example.netty.copy;
 
 import java.util.UUID;
 
+import com.sun.scenario.effect.impl.sw.sse.SSEBlend_SRC_OUTPeer;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
 
@@ -27,4 +28,12 @@ public class MyServerHandler extends SimpleChannelInboundHandler<String> {
         super.handlerAdded(ctx);
     }
 
+    @Override
+    public void userEventTriggered(ChannelHandlerContext ctx, Object evt) throws Exception {
+
+        System.out.println("收到event: " + evt);
+
+
+        super.userEventTriggered(ctx, evt);
+    }
 }

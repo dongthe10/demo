@@ -14,6 +14,19 @@
         <module>grpc-demo/grpc-client</module>
         <module>netty-demo</module>
         <module>zookeeper-demo</module>
+        <module>kafka-demo</module>
+        <module>canal-demo</module>
+        <module>elasticsearch-demo</module>
+        <module>delay-demo</module>
+        <module>dubbo-demo/dubbo-provider</module>
+        <module>dubbo-demo/dubbo-consumer</module>
+        <module>dubbo-demo/dubbo-interface</module>
+        <module>seckill-demo</module>
+        <module>sentinel-demo</module>
+        <module>swagger-demo</module>
+        <module>oauth2-demo/oauth2-auth</module>
+        <module>oauth2-demo/oauth2-resource</module>
+        <module>utility-demo</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>

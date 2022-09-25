@@ -2,23 +2,20 @@ package com.hollly.example.netty;
 
 import io.netty.bootstrap.ServerBootstrap;
 
-import io.netty.buffer.ByteBuf;
-import io.netty.buffer.ByteBufAllocator;
 import io.netty.buffer.PooledByteBufAllocator;
 import io.netty.channel.*;
 import io.netty.channel.nio.NioEventLoopGroup;
-import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
 
 /**
  * @author hollly
  * @date 2021/10/31 17:40
  */
-public class DiscardServer {
+public class EchoServer {
 
     private int port;
 
-    public DiscardServer(int port) {
+    public EchoServer(int port) {
         this.port = port;
     }
 
@@ -54,6 +51,6 @@ public class DiscardServer {
             port = Integer.parseInt(args[0]);
         }
 
-        new DiscardServer(port).run();
+        new EchoServer(port).run();
     }
 }

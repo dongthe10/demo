@@ -1,6 +1,9 @@
 package com.hollly.example.netty;
 
+import com.hollly.example.netty.copy.MyClientInitailizer;
 import io.netty.bootstrap.Bootstrap;
+import io.netty.buffer.ByteBuf;
+import io.netty.buffer.Unpooled;
 import io.netty.channel.*;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.nio.NioSocketChannel;
@@ -30,50 +33,31 @@ public class SimpleClient {
         Bootstrap bootstrap = new Bootstrap();
         bootstrap.group(eventLoopGroup)
                 .channel(NioSocketChannel.class)
-                .handler(new ChannelInitializer() {
-                    @Override
-                    protected void initChannel(Channel ch) throws Exception {
-                        ch.pipeline().addLast(new ChannelInboundHandlerAdapter() {
-                            @Override
-                            public void handlerAdded(ChannelHandlerContext ctx) throws Exception {
-                                System.out.println("client handlerAdded");
-                            }
+                // 客户端编码器和 服务端解码器要对应，不然服务端会收不到消息
+                .handler(new MyClientInitailizer());
 
-                            @Override
-                            public void handlerRemoved(ChannelHandlerContext ctx) throws Exception {
-                                System.out.println("client handlerRemoved");
-                            }
-
-                            @Override
-                            public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) throws Exception {
-                                System.out.println("client exceptionCaught");
-                            }
-
-                            @Override
-                            public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
-                                System.out.println("channelRead " + msg);
-                                super.channelRead(ctx, msg);
-                            }
-                        });
-                    }
-                });
-
-
-        ChannelFuture channelFuture = null;
         try {
-            channelFuture = bootstrap.connect(new InetSocketAddress("localhost", 8080)).sync();
-        } catch (InterruptedException e) {
-            log.log(Level.SEVERE, "netty客户端连接异常");
-            e.printStackTrace();
-        }
-        if (channelFuture.isSuccess()) {
-            log.info("netty客户端成功连接");
-        }
-        Channel channel = channelFuture.channel();
+            ChannelFuture channelFuture = null;
+            try {
+                channelFuture = bootstrap.connect(new InetSocketAddress("localhost", 8899)).sync();
+            } catch (InterruptedException e) {
+                log.log(Level.SEVERE, "netty客户端连接异常");
+                e.printStackTrace();
+            }
+            if (channelFuture.isSuccess()) {
+                log.info("netty客户端成功连接");
+            }
+            Channel channel = channelFuture.channel();
 
-        // 开启线程读取控制台信息
-        new Thread(runnableTask(channel)).start();
-        START_FLAG = true;
+            // 开启线程读取控制台信息
+            new Thread(runnableTask(channel)).start();
+            START_FLAG = true;
+            channel.closeFuture().sync();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } finally {
+            eventLoopGroup.shutdownGracefully();
+        }
 
     }
 
@@ -86,11 +70,11 @@ public class SimpleClient {
             public void run() {
                 while (START_FLAG) {
                     String line = scanner.nextLine();
-                    ChannelFuture future = channel.writeAndFlush(line);
+                    ChannelFuture future = channel.writeAndFlush(Unpooled.wrappedBuffer(line.getBytes()));
                     log.info("成功发送消息 msg=" + line);
-                    future.addListener((ChannelFutureListener) channelFuture ->
-                            System.out.println("Registry cim server success!")
-                    );
+//                    future.addListener((ChannelFutureListener) channelFuture ->
+//                            System.out.println("Registry cim server success!")
+//                    );
 
                 }
 

@@ -10,7 +10,7 @@ import java.util.concurrent.TimeUnit;
  * @date 2020/12/24 0:25
  */
 @Service
-public class AsncService {
+public class AsyncService {
 
     @Async
     public void print() {
@@ -20,5 +20,9 @@ public class AsncService {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+    }
+
+    public void txAction() {
+        System.out.println("simple business");
     }
 }
