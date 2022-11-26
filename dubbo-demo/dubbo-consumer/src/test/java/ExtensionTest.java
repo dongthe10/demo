@@ -1,5 +1,5 @@
-import com.alibaba.dubbo.common.extension.ExtensionLoader;
 import com.alibaba.dubbo.rpc.cluster.Cluster;
+import org.apache.dubbo.common.extension.ExtensionLoader;
 
 /**
  * @author hollly

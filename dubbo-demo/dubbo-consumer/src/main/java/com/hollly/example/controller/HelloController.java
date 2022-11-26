@@ -1,7 +1,7 @@
 package com.hollly.example.controller;
 
-import com.alibaba.dubbo.config.annotation.Reference;
 import com.hollly.example.api.GreetingService;
+import org.apache.dubbo.config.annotation.DubboReference;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -19,7 +19,7 @@ public class HelloController {
 
     private static Logger log = LoggerFactory.getLogger(HelloController.class);
 
-    @Reference
+    @DubboReference
     private GreetingService greetingService;
 
 

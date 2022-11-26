@@ -2,6 +2,8 @@ spring:
   application:
     name: dubbo-provider
 
+
+# 下面这个配置是没用的，新的dubbo读的都是dubbo.xxxx的配置
   dubbo:
     application:            #应用配置，用于配置当前应用信息，不管该应用是提供者还是消费者。
       name: dubbo-provider
@@ -16,6 +18,18 @@ spring:
 server:
   port: 7001
 
+
+# dubbo 配置文件
+dubbo:
+  application: #应用配置，用于配置当前应用信息，不管该应用是提供者还是消费者。
+    name: dubbo-provider
+  registry: #注册中心配置，用于配置连接注册中心相关信息。
+    protocol: zookeeper
+    address: zookeeper://127.0.0.1:2181
+    parameters:
+      registry-type: service
+  scan:
+    base-packages: com.hollly.example.service
 
 
 
